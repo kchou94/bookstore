@@ -25,14 +25,14 @@ func main() {
 		log.Println("web server start failed:", err)
 		return
 	}
-	log.Panicln("web server start ok")
+	log.Println("web server start ok")
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 
 	select { // 监视来自errChan以及c的事件
-	case err := <-errChan:
-		log.Panicln("web server run failed:", err)
+	case err = <-errChan:
+		log.Println("web server run failed:", err)
 		return
 	case <-c:
 		log.Println("bookstore program is exiting...")
@@ -42,7 +42,7 @@ func main() {
 	}
 
 	if err != nil {
-		log.Panicln("bookstore program exit error:", err)
+		log.Println("bookstore program exit error:", err)
 		return
 	}
 	log.Println("bookstore program exit ok")
